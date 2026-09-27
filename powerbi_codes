@@ -16,3 +16,19 @@ ADDCOLUMNS (
         FORMAT ( [Date], "YYYY" ) & "/Q"
             & FORMAT ( [Date], "Q" )
 )
+
+-----------
+
+Conversion Rate = 
+VAR TotalVisitors = CALCULATE( COUNT(fact_customer_journey[JourneyID]), fact_customer_journey[Action]="View")
+VAR TotalPurchases = CALCULATE(COUNT(fact_customer_journey[JourneyID]), fact_customer_journey[Action]="Purchase")
+
+RETURN
+IF(
+    TotalVisitors = 0,
+    0,
+    DIVIDE(TotalPurchases,TotalVisitors)
+)
+
+---------------
+Create _Calculations table -> Home -> Enter Data -> create the table -> add a new measure -> delete the empty column
