@@ -32,3 +32,8 @@ IF(
 
 ---------------
 Create _Calculations table -> Home -> Enter Data -> create the table -> add a new measure -> delete the empty column
+-------------
+
+Volume of Order = SWITCH(true, fact_sales[Units] <= 5,"Small", fact_sales[Units] <=10, "Medium", "Big")       // create new column by groups
+
+
